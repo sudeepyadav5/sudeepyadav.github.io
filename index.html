@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="myfiles/fav1.png" type="image/png">
+    <title>Sudeep Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --danger: #e74c3c;
+            --success: #2ecc71;
+            --warning: #f39c12;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        .skill i {
+               margin-right: 8px;
+                width: 20px;
+                text-align: center;
+                color: var(--primary); /* or any color you prefer */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: white;
+            background: rgba(255,255,255,0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile menu */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill {
+            background-color: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::after {
+            right: -10px;
+        }
+
+        .right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .timeline-date {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content ul {
+            margin-left: 1rem;
+        }
+
+        .timeline-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-img {
+            height: 200px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .project-info p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background-color: var(--light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--dark);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .contact-info {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .contact-details {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            word-break: break-all;
+        }
+
+        .contact-item i {
+            margin-right: 1rem;
+            color: var(--primary);
+            font-size: 1.2rem;
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: var(--dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 21px;
+            }
+
+            .left::after,
+            .right::after {
+                left: 21px;
+            }
+
+            .left,
+            .right {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: left 0.3s ease;
+                z-index: 99;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .contact-item span {
+                font-size: 0.9rem;
+            }
+
+            .certifications {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .certification-card {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+
+            .timeline-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .timeline-content ul {
+                font-size: 0.9rem;
+            }
+
+            .contact-container {
+                gap: 1rem;
+            }
+
+            .contact-info, .contact-form {
+                padding: 1.5rem;
+            }
+
+            header {
+                padding: 1.5rem 0;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            .section-title {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('bg5.jpg'); background-size: cover; background-position: center;">
+        <div class="header-content">
+            <img src="myfiles/Sudeep_Passport_Photo.jpeg" alt="Sudeep Yadav" class="profile-img">
+            <h1>Sudeep Yadav</h1>
+            <p class="tagline">Software Development Engineer in Test | ISTQB Certified | Expert in Selenium & Appium Automation with Python</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/sudeep-yadav-b26574111" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/sudeepyadav5" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:sudeepyadav5@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="tel:+918460905553" aria-label="Phone"><i class="fas fa-phone"></i></a>
+                <a href="https://wa.me/918469645957" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <a href="http://sudeepyadav5.github.io/" class="logo">Sudeep Yadav</a>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Dynamic and detail-oriented QA Automation Engineer with a strong focus on automation testing, targeting opportunities to leverage expertise in diverse industries such as transportation and food delivery to enhance software quality and reliability.</p>
+                    <p>Certified ISTQB® Advanced Test Automation Engineer (CTAL-TAE) and ISTQB® Foundation Level Test Engineer (CTFL), demonstrating a commitment to industry standards and continuous professional growth.</p>
+                    <p>Proficient in modern testing methodologies, including BDD, Agile, Pytest, Data-Driven Frameworks, and continuous integration tools such as Jenkins and GitHub Actions.</p>
+                </div>
+                <div class="about-details">
+                    <h3>Personal Details</h3>
+                    <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Surat, Gujarat</div>
+                    <div class="contact-item"><i class="fas fa-birthday-cake"></i> 13th June 1995</div>
+                    <div class="contact-item"><i class="fas fa-language"></i> English, Hindi & Gujarati</div>
+
+                    <h3 style="margin-top: 1.5rem;">Education</h3>
+                    <p><strong>Master of Computer Applications (MCA)</strong><br>
+                    Sarvajanik College of Engineering and Technology | Gujarat Technological University, Surat (2020)</p>
+                    <p><strong>Bachelor of Computer Applications (BCA)</strong><br>
+                    Vimal Tormal Poddar BCA & BCOM College | Veer Narmad South Gujarat University, Surat (2017)</p>
+                    <p><strong>12th Commerce</strong><br>
+                    Smt S V Rao New Model Higher Secondary School | Gujarat Board, Surat (2014)</p>
+                    <p><strong>10th </strong><br>
+                    Gujarat Board, Surat (2014)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" style="background-color: #f5f7fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Professional Experience</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Software Development Engineer in Test</h3>
+                        <div class="timeline-date">Apr 2021 – Present | Appscrip, Bengaluru</div>
+                        <ul>
+                            <li>Leading testing efforts for application, web, and API testing across iOS, Android, and web environments</li>
+                            <li>Automating web and mobile applications using Python for API automation</li>
+                            <li>Managing daily testing for Karry (Uber-like ride service application)</li>
+                            <li>Leading and mentoring QA interns and developers in an Agile environment</li>
+                            <li>Enhancing automation practices and testing strategies</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Quality Assurance Engineer</h3>
+                        <div class="timeline-date">Nov 2019 – Apr 2021 | Krishna Softweb, Surat</div>
+                        <ul>
+                            <li>Prepared detailed bug reports and facilitated defect resolution</li>
+                            <li>Tested and coordinated testing for client applications and websites</li>
+                            <li>Collaborated with cross-functional teams to maintain quality</li>
+                            <li>Conducted White Box, Black Box, and API Testing</li>
+                            <li>Analyzed system behavior through White Box Testing</li>
+                            <li>Prepared and maintained detailed bug reports</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Projects Managed</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img" style="background-image: url('myfiles/snapelogo.jpeg');" alt="SnapE Cab Project"></div>
+                    <div class="project-info">
+                        <h3>SnapE Cab - Ride Service</h3>
+                        <p>Tested and validated key features including customer registration, ride booking functionality (instant, scheduled, and rental), and multi-stop booking process.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Mobile Testing</span>
+                            <span class="tech-tag">Automation</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img" style="background-image: url('myfiles/karrylogo.png');" alt="Karry Project"></div>
+                    <div class="project-info">
+                        <h3>Karry</h3>
+                        <p>Tested core workflows including Rides, ASAP, and Shift-based deliveries, ensuring real-time order assignment based on driver preferences.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">API Testing</span>
+                            <span class="tech-tag">Selenium</span>
+                            <span class="tech-tag">Agile</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img" style="background-image: url('myfiles/roadyologo.png');" alt="Roadyo Project"></div>
+                    <div class="project-info">
+                        <h3>Roadyo</h3>
+                        <p>Tested core workflows including Rides, ASAP, and Shift-based deliveries, ensuring real-time order assignment based on driver preferences.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">API Testing</span>
+                            <span class="tech-tag">Selenium</span>
+                            <span class="tech-tag">Agile</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img" style="background-image: url('myfiles/roadyodriverlogo.png');" alt="Roadyo Partner Project"></div>
+                    <div class="project-info">
+                        <h3>Roadyo Partner</h3>
+                        <p>Tested core workflows including Rides, ASAP, and Shift-based deliveries, ensuring real-time order assignment based on driver preferences.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">API Testing</span>
+                            <span class="tech-tag">Selenium</span>
+                            <span class="tech-tag">Agile</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img" style="background-image: url('myfiles/meatylogo.png');" alt="Meaty Project"></div>
+                    <div class="project-info">
+                        <h3>Meaty - Delivery Service</h3>
+                        <p>Tested end-to-end delivery flow on iOS and Android platforms, ensuring smooth order placement and timely doorstep delivery.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Appium</span>
+                            <span class="tech-tag">BDD</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img" style="background-image: url('myfiles/towmelogo.png');" alt="Towme Project"></div>
+                    <div class="project-info">
+                        <h3>Towme - Towing Service</h3>
+                        <p>Tested key features including automated dispatch, real-time tracking, and payment management for on-demand towing assistance.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Mobile Testing</span>
+                            <span class="tech-tag">Automation</span>
+                            <span class="tech-tag">Pytest</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" style="background-color: #f5f7fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technical Skills</h2>
+            </div>
+            <div class="skills-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div>
+                    <h3 style="margin-bottom: 1rem;">Programming & Automation</h3>
+
+
+                    <div class="skills">
+                        <span class="skill">Python</span>
+                        <span class="skill">Selenium</span>
+                        <span class="skill">Appium</span>
+                        <span class="skill">API Testing</span>
+                        <span class="skill">Pytest Framework</span>
+                        <span class="skill">Data-Driven Framework</span>
+                        <span class="skill">UnitTest</span>
+                    </div>
+
+                    <h3 style="margin: 1.5rem 0 1rem 0;">Testing Platforms & Tools</h3>
+                    <div class="skills">
+                        <span class="skill">Browser Stack</span>
+                        <span class="skill">Lambdatest</span>
+                        <span class="skill">Charles Proxy</span>
+                        <span class="skill">Jenkins</span>
+                        <span class="skill">GitHub</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 1rem;">Testing Methodologies</h3>
+                    <div class="skills">
+                        <span class="skill">Agile</span>
+                        <span class="skill">BDD Framework</span>
+                        <span class="skill">Test Suite</span>
+                        <span class="skill">JMeter</span>
+                        <span class="skill">AI-Driven Testing</span>
+                    </div>
+
+                    <h3 style="margin: 1.5rem 0 1rem 0;">Core Competencies</h3>
+                    <div class="skills">
+                        <span class="skill">Software Quality Assurance</span>
+                        <span class="skill">Test Automation Strategies</span>
+                        <span class="skill">Manual & API Testing</span>
+                        <span class="skill">Mobile Application Testing</span>
+                        <span class="skill">Web Application Testing</span>
+                        <span class="skill">Test Case Development</span>
+                        <span class="skill">Bug Tracking</span>
+                        <span class="skill">Cross-Platform Testing</span>
+                        <span class="skill">Performance Optimization</span>
+                        <span class="skill">Root Cause Analysis</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3 style="text-align: center; margin-bottom: 1rem;">Certifications</h3>
+                <div class="certifications" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                    <div class="certification-card" style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); text-align: center; min-width: 250px;">
+                        <i class="fas fa-certificate" style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;"></i>
+                        <h4>ISTQB® Certified (CTAL - TAE)</h4>
+                        <p>CID ITB - CTAL-TAE - 686 India</p>
+                    </div>
+                    <div class="certification-card" style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); text-align: center; min-width: 250px;">
+                        <i class="fas fa-certificate" style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;"></i>
+                        <h4>ISTQB® Certified (CTFL)</h4>
+                        <p>CID ITB - CTFL-132506 India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <a href="https://wa.me/918469645957" target="_blank" style="color: inherit; text-decoration: none;">
+                            <span>Chat on WhatsApp</span>
+                        </a>
+                    </div>
+                    <div class="contact-details">
+
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>
+                                <a href="mailto:sudeepyadav5@gmail.com" style="text-decoration: none; color: inherit;">
+                                    sudeepyadav5@gmail.com
+                                </a>
+                            </span>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>
+                                <a href="https://wa.me/918460905553" target="_blank" style="text-decoration: none; color: inherit;">
+                                    +91 8460905553
+                                </a>
+                                /
+                                <a href="https://wa.me/918469645957" target="_blank" style="text-decoration: none; color: inherit;">
+                                    +91 8469645957
+                                </a>
+                            </span>
+                        </div>
+
+
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Surat, Gujarat, India</span>
+                        </div>
+
+                       <div class="contact-item">
+                            <i class="fab fa-linkedin-in"></i>
+                            <span>
+                                <a href="https://www.linkedin.com/in/sudeep-yadav-b26574111" target="_blank" style="text-decoration: none; color: inherit;">
+                                    linkedin.com/in/sudeep-yadav-b26574111
+                                </a>
+                            </span>
+                        </div>
+
+
+                        <div class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <span>
+                                <a href="https://github.com/sudeepyadav5" target="_blank" style="text-decoration: none; color: inherit;">
+                                    github.com/sudeepyadav5
+                                </a>
+                            </span>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="fas fa-file-download"></i>
+                            <span>
+                                <a href="myfiles/Sudeep_SDET_CV_6Yrs.pdf" download style="text-decoration: none; color: inherit;">
+                                    Download CV
+                                </a>
+                            </span>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="fas fa-file"></i>
+                            <span>
+                                <a href="myfiles/CoverSudeep_SDET_6Yrs.pdf" download style="text-decoration: none; color: inherit;">
+                                    Download Cover Letter
+                                </a>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        <input type="text" id="subject" name="subject" placeholder="Subject">
+                        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn">Send via WhatsApp</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Sudeep Yadav. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu if open
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+
+        // Sticky navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // WhatsApp form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            const whatsappMessage = `New Contact Form Submission:
+Name: ${name}
+Email: ${email}
+Subject: ${subject}
+Message: ${message}`;
+
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            window.open(`https://wa.me/918469645957?text=${encodedMessage}`, '_blank');
+        });
+    </script>
+</body>
+</html>
